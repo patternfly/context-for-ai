@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card as PFCard } from '@patternfly/react-core';
 import { SemanticComponentProps } from '../../types';
-import { inferCardPurpose, inferCardContentType, inferCardInteractiveState, inferCategory } from '../../utils/inference';
+import { inferCardPurpose, inferCardContentType, inferCardInteractiveState } from '../../utils/inference';
 import { useSemanticContext } from '../../context/SemanticContext';
 
 export interface CardProps extends Omit<React.ComponentProps<typeof PFCard>, 'children'>, SemanticComponentProps {
@@ -16,7 +16,7 @@ export interface CardProps extends Omit<React.ComponentProps<typeof PFCard>, 'ch
 export const Card: React.FC<CardProps> = ({
   semanticName,
   semanticRole,
-  aiMetadata,
+  aiMetadata: _aiMetadata,
   purpose,
   contentType,
   children,
@@ -24,7 +24,6 @@ export const Card: React.FC<CardProps> = ({
   isClickable,
   isExpanded,
   isCompact,
-  isFlat,
   isSelected,
   isDisabled,
   ...props
@@ -44,7 +43,7 @@ export const Card: React.FC<CardProps> = ({
   }
 
   // Auto-infer semantic properties from PatternFly props and children
-  const inferredPurpose = purpose || inferCardPurpose({ isSelectable, isClickable, isExpanded, isCompact, isFlat, children });
+  const inferredPurpose = purpose || inferCardPurpose({ isSelectable, isClickable, isExpanded, isCompact, children });
   const inferredContentType = contentType || inferCardContentType({ isSelectable, isClickable, isExpanded, children });
   const inferredInteractiveState = inferCardInteractiveState({ isSelectable, isClickable, isExpanded, isSelected, isDisabled });
   
@@ -78,7 +77,6 @@ export const Card: React.FC<CardProps> = ({
       isClickable={isClickable}
       isExpanded={isExpanded}
       isCompact={isCompact}
-      isFlat={isFlat}
       isSelected={isSelected}
       isDisabled={isDisabled}
       data-semantic-name={componentName}

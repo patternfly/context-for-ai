@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button as PFButton } from '@patternfly/react-core';
 import { SemanticComponentProps } from '../../types';
-import { inferButtonAction, inferContext, inferCategory } from '../../utils/inference';
+import { inferButtonAction, inferContext } from '../../utils/inference';
 import { useSemanticContext } from '../../context/SemanticContext';
 
 export interface ButtonProps extends Omit<React.ComponentProps<typeof PFButton>, 'children'>, SemanticComponentProps {
@@ -15,7 +15,7 @@ export interface ButtonProps extends Omit<React.ComponentProps<typeof PFButton>,
 /** Button - PatternFly Button wrapper with semantic metadata for AI tooling */
 export const Button: React.FC<ButtonProps> = ({
   semanticRole,
-  aiMetadata,
+  aiMetadata: _aiMetadata,
   action,
   context,
   target,

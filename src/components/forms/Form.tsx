@@ -21,7 +21,7 @@ export const Form: React.FC<FormProps> = ({
   const { addContext, removeContext } = useSemanticContext();
   
   React.useEffect(() => {
-    addContext('Form', false);  // false = wrapper (always visible)
+    addContext('Form', undefined, false);  // false = wrapper (always visible)
     return () => removeContext();
   }, [addContext, removeContext]);
 

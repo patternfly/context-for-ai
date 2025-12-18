@@ -36,6 +36,7 @@ export default [
       ...Object.keys(packageJson.dependencies || {}),
       'react/jsx-runtime',
       'react/jsx-dev-runtime',
+      /\.css$/,
     ],
   },
   {

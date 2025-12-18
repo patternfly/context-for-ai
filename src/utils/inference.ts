@@ -133,7 +133,7 @@ export const inferCardPurpose = (props: Record<string, unknown>): string => {
   
   // Layout-based cards
   if (props.isCompact) return 'data-summary';
-  if (props.isFlat) return 'content-display';
+  if (props.isPlain) return 'content-display';
   
   // Content-based cards (based on children analysis)
   if (props.children) {
@@ -370,7 +370,7 @@ export const inferCheckboxPurpose = (isChecked?: boolean): string => {
 /**
  * Infer link purpose
  */
-export const inferLinkPurpose = (href?: string, children?: React.ReactNode): string => {
+export const inferLinkPurpose = (href?: string, children?: unknown): string => {
   if (href?.startsWith('http')) return 'external';
   if (href === '#') return 'action';
   if (href?.includes('download')) return 'download';

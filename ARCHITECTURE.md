@@ -3,7 +3,7 @@
 ## File Structure
 
 ```
-semantic-ui-layer/
+@patternfly/context-for-ai/
 ├── src/
 │   ├── index.ts                          # Main entry point
 │   ├── types/index.ts                    # Core type definitions

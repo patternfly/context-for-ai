@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal as PFModal } from '@patternfly/react-core';
 import { SemanticComponentProps } from '../../types';
-import { inferModalPurpose, inferModalInteractionType, inferCategory } from '../../utils/inference';
+import { inferModalPurpose, inferModalInteractionType } from '../../utils/inference';
 import { useSemanticContext } from '../../context/SemanticContext';
 
 export interface ModalProps extends Omit<React.ComponentProps<typeof PFModal>, 'children'>, SemanticComponentProps {
@@ -15,10 +15,11 @@ export interface ModalProps extends Omit<React.ComponentProps<typeof PFModal>, '
 }
 
 /** Modal - PatternFly Modal wrapper with semantic metadata for AI tooling */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const Modal = React.forwardRef<any, ModalProps>(({
   semanticName,
   semanticRole,
-  aiMetadata,
+  aiMetadata: _aiMetadata,
   purpose,
   interactionType,
   triggeredBy,
@@ -31,7 +32,7 @@ export const Modal = React.forwardRef<any, ModalProps>(({
   const { addContext, removeContext } = useSemanticContext();
   
   React.useEffect(() => {
-    addContext('Modal', true);  // true = qualified visual parent
+    addContext('Modal', undefined, true);  // true = qualified visual parent
     return () => removeContext();
   }, [addContext, removeContext]);
 
@@ -79,5 +80,7 @@ export const Modal = React.forwardRef<any, ModalProps>(({
     </PFModal>
   );
 });
+
+Modal.displayName = 'Modal';
 
 export default Modal;

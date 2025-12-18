@@ -22,7 +22,7 @@ export const Drawer: React.FC<DrawerProps> = ({
   const { addContext, removeContext } = useSemanticContext();
   
   React.useEffect(() => {
-    addContext('Drawer', true);  // true = qualified visual parent
+    addContext('Drawer', undefined, true);  // true = qualified visual parent
     return () => removeContext();
   }, [addContext, removeContext]);
 

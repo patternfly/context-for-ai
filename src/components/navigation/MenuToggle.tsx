@@ -17,20 +17,27 @@ export const MenuToggle: React.FC<MenuToggleProps> = ({
 }) => {
   // Get hierarchy from context (optional)
   let hierarchy;
+  let semanticContext;
   try {
-    const semanticContext = useSemanticContext();
-    const { addContext, removeContext, getHierarchy } = semanticContext;
-    
-    // Add "menu" context when this component mounts/renders
-    React.useEffect(() => {
-      addContext('Menu');  // Auto-detected as non-qualified (wrapper)
-      return () => removeContext();
-    }, [addContext, removeContext]);
-    
-    hierarchy = getHierarchy();
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    semanticContext = useSemanticContext();
   } catch {
-    hierarchy = { fullPath: '', qualifiedParents: [], wrappers: [], immediateParent: '', immediateWrapper: '', depth: 0 };
+    semanticContext = null;
   }
+
+  const { addContext, removeContext, getHierarchy } = semanticContext || {
+    addContext: () => {},
+    removeContext: () => {},
+    getHierarchy: () => ({ fullPath: '', qualifiedParents: [], wrappers: [], immediateParent: '', immediateWrapper: '', depth: 0 })
+  };
+
+  // Add "menu" context when this component mounts/renders
+  React.useEffect(() => {
+    addContext('Menu');  // Auto-detected as non-qualified (wrapper)
+    return () => removeContext();
+  }, [addContext, removeContext]);
+
+  hierarchy = getHierarchy();
 
   const componentName = semanticName || 'Toggle';
   const metadata = aiMetadata || {

@@ -2,7 +2,7 @@
 
 > **⚠️ Important**: This is a **codemod tool only**. You do NOT need to import or use any library components. Simply install the package and run the codemod to transform your existing PatternFly components. The library code in this repository is for reference/development purposes only.
 
-**📦 Install from npm**: `npm install -D @patternfly/context-for-ai`  
+**📦 Install from npm**: `npm install -D @patternfly/context-for-ai`
 **🔗 Package**: [@patternfly/context-for-ai on npm](https://www.npmjs.com/package/@patternfly/context-for-ai)
 
 A codemod tool that automatically adds standardized semantic `data-*` attributes to **all PatternFly components** in your codebase, making them AI-friendly and easier for AI tools to understand.
@@ -188,7 +188,7 @@ npm outdated @patternfly/context-for-ai
 
 ```bash
 npm update @patternfly/context-for-ai
-# or
+# or for latest version
 npm install -D @patternfly/context-for-ai@latest
 ```
 
@@ -224,19 +224,19 @@ Check the commit history or GitHub releases to see what improvements were made i
 ### Transform Entire Directory
 
 ```bash
-jscodeshift -t node_modules/@patternfly/context-for-ai/codemod/transform.js --extensions=ts,tsx,js,jsx --parser=tsx src/
+npx jscodeshift -t node_modules/@patternfly/context-for-ai/codemod/transform.js --extensions=ts,tsx,js,jsx --parser=tsx src/
 ```
 
 ### Transform Specific File
 
 ```bash
-jscodeshift -t node_modules/@patternfly/context-for-ai/codemod/transform.js src/components/MyComponent.tsx
+npx jscodeshift -t node_modules/@patternfly/context-for-ai/codemod/transform.js src/components/MyComponent.tsx
 ```
 
 ### Preview Changes (Dry Run)
 
 ```bash
-jscodeshift -t node_modules/@patternfly/context-for-ai/codemod/transform.js --dry src/
+npx jscodeshift -t node_modules/@patternfly/context-for-ai/codemod/transform.js --dry src/
 ```
 
 ### Using the Bash Script
