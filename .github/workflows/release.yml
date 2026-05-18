@@ -18,6 +18,8 @@ jobs:
       pull-requests: write
     env:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # setup-node + registry-url writes .npmrc that authenticates via NODE_AUTH_TOKEN
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
@@ -58,5 +60,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
 
