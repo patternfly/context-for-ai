@@ -2,6 +2,7 @@
   "name": "@patternfly/context-for-ai",
   "version": "1.0.0",
   "description": "Codemod tool that automatically adds semantic data-* attributes to all PatternFly components in your codebase, making them AI-friendly. No library imports needed - just run the codemod.",
+  "access": "public",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
